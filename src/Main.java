@@ -1,15 +1,14 @@
 public class Main {
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
 
-        Radio radio = new RadioPhone(); 
+        IRadio radio = new RadioPhone();
 
-        radio.powerOn();
+        radio.turnOn();
         radio.switchBand();
-        radio.nextStation();
-        radio.saveStation(1);
-        radio.selectStation(1);
+        radio.nextFrequency();
 
         System.out.println("Band: " + radio.getBand());
-        System.out.println("Station: " + radio.getStation());
+        System.out.println("Station: " + radio.getCurrentFrequency());
     }
 }
+
