@@ -1,4 +1,4 @@
-public interface Radio {
+public interface IRadio {
 
     void powerOn();
     void powerOff();
