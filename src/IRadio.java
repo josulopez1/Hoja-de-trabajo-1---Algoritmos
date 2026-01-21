@@ -1,15 +1,16 @@
 public interface IRadio {
 
-    void powerOn();
-    void powerOff();
+    void turnOn();
+    void turnOff();
     boolean isOn();
 
     void switchBand();
     String getBand();
 
-    void nextStation();
-    double getStation();
+    void nextFrequency();
+    double getCurrentFrequency();
 
     void saveStation(int button);
-    void selectStation(int button);
+    void selectButton(int button);
+    double getButtonFrequency(int button);
 }
