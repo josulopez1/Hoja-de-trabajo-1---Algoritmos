@@ -6,6 +6,16 @@ public class RadioPhone implements IRadio {
     private double currentAM = 1030.0;
     private double currentFM = 88.5;
 
+    private double[] amPresets = new double[12];
+    private double[] fmPresets = new double[12];
+
+    public RadioPhone() {
+        for (int i = 0; i < 12; i++) {
+            amPresets[i] = 1030.0;
+            fmPresets[i] = 88.5;
+        }
+    }
+
     @Override
     public void turnOn() {
         isOn = true;
@@ -51,14 +61,31 @@ public class RadioPhone implements IRadio {
     }
 
     @Override
-    public void saveStation(int button) {}
+    public void saveStation(int button) {
+        if (!isOn || button < 1 || button > 12) return;
+
+        if (isFM) {
+            fmPresets[button - 1] = currentFM;
+        } else {
+            amPresets[button - 1] = currentAM;
+        }
+    }
 
     @Override
-    public void selectButton(int button) {}
+    public void selectButton(int button) {
+        if (!isOn || button < 1 || button > 12) return;
+
+        if (isFM) {
+            currentFM = fmPresets[button - 1];
+        } else {
+            currentAM = amPresets[button - 1];
+        }
+    }
 
     @Override
     public double getButtonFrequency(int button) {
-        return 0.0;
+        if (button < 1 || button > 12) return 0.0;
+        return isFM ? fmPresets[button - 1] : amPresets[button - 1];
     }
 }
 
