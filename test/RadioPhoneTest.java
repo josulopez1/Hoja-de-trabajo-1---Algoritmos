@@ -19,20 +19,21 @@ public class RadioPhoneTest {
 
     @Test
     public void testSwitchBand() {
-        String initialBand = radio.getBand();
+        String band = radio.getBand();
         radio.switchBand();
-        assertNotEquals(initialBand, radio.getBand());
+        assertNotEquals(band, radio.getBand());
     }
 
     @Test
-    public void testSaveAndSelectStation() {
+    public void testSaveAndSelectPreset() {
         radio.nextFrequency();
-        double saved = radio.getCurrentFrequency();
+        double freq = radio.getCurrentFrequency();
 
         radio.saveStation(1);
         radio.nextFrequency();
         radio.selectButton(1);
 
-        assertEquals(saved, radio.getCurrentFrequency(), 0.001);
+        assertEquals(freq, radio.getCurrentFrequency(), 0.001);
     }
 }
+
