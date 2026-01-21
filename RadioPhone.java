@@ -1,1 +1,2 @@
-public class RadioPhone implements Radio {
+public class RadioPhone implements IRadio {
+
