@@ -1,6 +1,10 @@
 public class RadioPhone implements IRadio {
 
     private boolean isOn;
+    private boolean isFM = true;
+
+    private double currentAM = 1030.0;
+    private double currentFM = 88.5;
 
     @Override
     public void turnOn() {
@@ -17,22 +21,33 @@ public class RadioPhone implements IRadio {
         return isOn;
     }
 
-    // ---- Métodos pendientes ----
-
     @Override
-    public void switchBand() {}
-
-    @Override
-    public String getBand() {
-        return "";
+    public void switchBand() {
+        if (!isOn) return;
+        isFM = !isFM;
     }
 
     @Override
-    public void nextFrequency() {}
+    public String getBand() {
+        return isFM ? "FM" : "AM";
+    }
+
+    @Override
+    public void nextFrequency() {
+        if (!isOn) return;
+
+        if (isFM) {
+            currentFM += 0.2;
+            if (currentFM > 107.9) currentFM = 87.9;
+        } else {
+            currentAM += 10;
+            if (currentAM > 1610) currentAM = 530;
+        }
+    }
 
     @Override
     public double getCurrentFrequency() {
-        return 0.0;
+        return isFM ? currentFM : currentAM;
     }
 
     @Override
@@ -46,3 +61,4 @@ public class RadioPhone implements IRadio {
         return 0.0;
     }
 }
+
